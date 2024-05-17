@@ -2,9 +2,9 @@ namespace HesapMakinesi
 {
     public partial class Form1 : Form
     {
-        Int128 finalNum;
-        Int128 num1;
-        Int128 num2;
+        Decimal finalNum;
+        Decimal num1;
+        Decimal num2;
         string opr;
 
         public Form1()
@@ -107,8 +107,8 @@ namespace HesapMakinesi
 
         void AddNum(int num)
         {
-            //Int128.MaxValue yu geçince - olacak. Hýzlý çözüm
-            if ((num1 * 10 + num) < 0 || (num2 * 10 + num) < 0)
+            //Burda exception var çözülemedi.
+            if ((num1 * 10 + num) > Decimal.MaxValue || (num2 * 10 + num) > Decimal.MaxValue)
             {
                 Clear();
                 return;
