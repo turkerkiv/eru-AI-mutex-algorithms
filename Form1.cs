@@ -15,13 +15,13 @@ namespace HesapMakinesi
         private void btnPlus_Click(object sender, EventArgs e)
         {
             opr = "+";
-            richTextBox1.Text += opr;
+            richTextBox1.Text = num1 + opr;
         }
 
         private void btnMinus_Click(object sender, EventArgs e)
         {
             opr = "-";
-            richTextBox1.Text += opr;
+            richTextBox1.Text = num1 + opr;
         }
 
         private void btnCalculate_Click(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace HesapMakinesi
             }
             else if (opr == "/")
             {
-                if(num2 == 0)
+                if (num2 == 0)
                 {
                     finalNum = 0;
                     Clear();
@@ -63,49 +63,41 @@ namespace HesapMakinesi
         private void button1_Click(object sender, EventArgs e)
         {
             AddNum(1);
-
         }
 
         private void btn2_Click(object sender, EventArgs e)
         {
             AddNum(2);
-
         }
 
         private void btn3_Click(object sender, EventArgs e)
         {
             AddNum(3);
-
         }
 
         private void btn4_Click(object sender, EventArgs e)
         {
             AddNum(4);
-
         }
 
         private void btn5_Click(object sender, EventArgs e)
         {
             AddNum(5);
-
         }
 
         private void btn6_Click(object sender, EventArgs e)
         {
             AddNum(6);
-
         }
 
         private void btn7_Click(object sender, EventArgs e)
         {
             AddNum(7);
-
         }
 
         private void btn8_Click(object sender, EventArgs e)
         {
             AddNum(8);
-
         }
 
         private void btn9_Click(object sender, EventArgs e)
@@ -115,7 +107,8 @@ namespace HesapMakinesi
 
         void AddNum(int num)
         {
-            if ((num1 * 10 + num) < 0  || (num2 * 10 + num) < 0)
+            //Int128.MaxValue yu geçince - olacak. Hýzlý çözüm
+            if ((num1 * 10 + num) < 0 || (num2 * 10 + num) < 0)
             {
                 Clear();
                 return;
@@ -129,7 +122,7 @@ namespace HesapMakinesi
             else
             {
                 num2 = num2 * 10 + num;
-                richTextBox1.Text = num2.ToString();
+                richTextBox1.Text = num1 + opr + num2;
             }
         }
 
@@ -154,13 +147,13 @@ namespace HesapMakinesi
         private void btn_divide_Click(object sender, EventArgs e)
         {
             opr = "/";
-            richTextBox1.Text += opr;
+            richTextBox1.Text = num1 + opr;
         }
 
         private void btn_multiply_Click(object sender, EventArgs e)
         {
             opr = "*";
-            richTextBox1.Text += opr;
+            richTextBox1.Text = num1 + opr;
         }
     }
 }

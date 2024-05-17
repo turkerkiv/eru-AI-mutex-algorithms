@@ -14,3 +14,4 @@ C:\Users\turke\OneDrive\Masaüstü\Others\Uni Prog 2\HesapMakinesi\obj\Debug\net
 C:\Users\turke\OneDrive\Masaüstü\Others\Uni Prog 2\HesapMakinesi\obj\Debug\net8.0-windows\HesapMakinesi.pdb
 C:\Users\turke\OneDrive\Masaüstü\Others\Uni Prog 2\HesapMakinesi\obj\Debug\net8.0-windows\HesapMakinesi.genruntimeconfig.cache
 C:\Users\turke\OneDrive\Masaüstü\Others\Uni Prog 2\HesapMakinesi\obj\Debug\net8.0-windows\ref\HesapMakinesi.dll
+C:\Users\turke\OneDrive\Masaüstü\Others\Uni Prog 2\HesapMakinesi\obj\Debug\net8.0-windows\HesapMakinesi.sourcelink.json

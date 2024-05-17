@@ -169,6 +169,7 @@
             // 
             // richTextBox1
             // 
+            richTextBox1.Font = new Font("Segoe UI Symbol", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextBox1.Location = new Point(12, 115);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
