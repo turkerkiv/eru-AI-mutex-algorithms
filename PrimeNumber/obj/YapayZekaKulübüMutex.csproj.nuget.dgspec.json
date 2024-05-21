@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\turke\\OneDrive\\Masaüstü\\Others\\YapayZekaKulübüMutex\\YapayZekaKulübüMutex.csproj": {}
+    "C:\\Users\\turke\\OneDrive\\Masaüstü\\Others\\YapayZekaKulübüMutex\\PrimeNumber\\YapayZekaKulübüMutex.csproj": {}
   },
   "projects": {
-    "C:\\Users\\turke\\OneDrive\\Masaüstü\\Others\\YapayZekaKulübüMutex\\YapayZekaKulübüMutex.csproj": {
+    "C:\\Users\\turke\\OneDrive\\Masaüstü\\Others\\YapayZekaKulübüMutex\\PrimeNumber\\YapayZekaKulübüMutex.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\turke\\OneDrive\\Masaüstü\\Others\\YapayZekaKulübüMutex\\YapayZekaKulübüMutex.csproj",
+        "projectUniqueName": "C:\\Users\\turke\\OneDrive\\Masaüstü\\Others\\YapayZekaKulübüMutex\\PrimeNumber\\YapayZekaKulübüMutex.csproj",
         "projectName": "YapayZekaKulübüMutex",
-        "projectPath": "C:\\Users\\turke\\OneDrive\\Masaüstü\\Others\\YapayZekaKulübüMutex\\YapayZekaKulübüMutex.csproj",
+        "projectPath": "C:\\Users\\turke\\OneDrive\\Masaüstü\\Others\\YapayZekaKulübüMutex\\PrimeNumber\\YapayZekaKulübüMutex.csproj",
         "packagesPath": "C:\\Users\\turke\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\turke\\OneDrive\\Masaüstü\\Others\\YapayZekaKulübüMutex\\obj\\",
+        "outputPath": "C:\\Users\\turke\\OneDrive\\Masaüstü\\Others\\YapayZekaKulübüMutex\\PrimeNumber\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\turke\\AppData\\Roaming\\NuGet\\NuGet.Config",

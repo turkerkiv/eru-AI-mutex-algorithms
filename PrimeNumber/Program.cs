@@ -2,18 +2,31 @@
 {
     private static void Main(string[] args)
     {
-        bool isNum = int.TryParse(Console.ReadLine(), out int num);
-        bool isPrimeNum = true;
-        if (!isNum)
+        System.Console.WriteLine("Enter the beginning point of range.");
+        bool isNum1 = int.TryParse(Console.ReadLine(), out int num1);
+        System.Console.WriteLine("Enter the ending point of range.");
+        bool isNum2 = int.TryParse(Console.ReadLine(), out int num2);
+
+        if (!isNum1 && !isNum2)
         {
             System.Console.WriteLine("Please enter a number.");
             return;
         }
 
+        for (int i = num1 < 2 ? 2 : num1; i <= num2; i++)
+        {
+            if (isPrime(i))
+            {
+                Console.Write(i + " ");
+            }
+        }
+    }
+
+    static bool isPrime(int num)
+    {
         if (num == 2)
         {
-            System.Console.WriteLine($"{num} is a prime number.");
-            return;
+            return true;
         }
 
         if (num % 2 != 0)
@@ -23,23 +36,15 @@
             {
                 if (num % i == 0)
                 {
-                    isPrimeNum = false;
-                    break;
+                    return false;
                 }
             }
-        }
-        else
-        {
-            isPrimeNum = false;
-        }
 
-        if (isPrimeNum)
-        {
-            System.Console.WriteLine($"{num} is a prime number.");
+            return true;
         }
         else
         {
-            System.Console.WriteLine($"{num} is not a prime number.");
+            return false;
         }
     }
 }
