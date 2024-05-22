@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("YapayZekaKulübüMutex")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ca1c817ff295519ef5cebd0d5f6816db9d07a31")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+091b31a2eaf331230739888a6f341240b3ca38aa")]
 [assembly: System.Reflection.AssemblyProductAttribute("YapayZekaKulübüMutex")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YapayZekaKulübüMutex")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
