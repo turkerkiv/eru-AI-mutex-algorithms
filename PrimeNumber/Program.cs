@@ -39,6 +39,7 @@ internal class Program
             thread.Join();
         }
 
+        System.Console.WriteLine();
         watch.Stop();
         Console.WriteLine($"Runtime: {watch.ElapsedMilliseconds} ms");
     }
@@ -71,7 +72,7 @@ internal class Program
 
         if (isPrime)
         {
-            Console.WriteLine(num + " ");
+            Console.Write(num + " ");
         }
     }
 }
