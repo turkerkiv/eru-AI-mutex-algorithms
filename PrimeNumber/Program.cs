@@ -1,4 +1,6 @@
-﻿internal class Program
+﻿using System.Diagnostics;
+
+internal class Program
 {
     private static void Main(string[] args)
     {
@@ -13,13 +15,21 @@
             return;
         }
 
+        System.Console.WriteLine("--------------------");
+        var watch = new Stopwatch();
+        watch.Start();
+
         for (int i = num1 < 2 ? 2 : num1; i <= num2; i++)
         {
             if (isPrime(i))
             {
-                Console.Write(i + " ");
+                Console.Write(i + ", ");
             }
         }
+
+        System.Console.WriteLine();
+        watch.Stop();
+        System.Console.WriteLine("Runtime: {0} ms", watch.ElapsedMilliseconds);
     }
 
     static bool isPrime(int num)
