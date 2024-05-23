@@ -23,28 +23,33 @@ internal class Program
         var watch = new System.Diagnostics.Stopwatch();
         watch.Start();
 
-        for (int i = num1; i <= num2; i++)
-        {
-            //araştırınca thread kullanırken anonim fonksiyon içinde methoda parametre verince valuetype bile olsa reference gönderiyormuş.
-            //yani localI tanımlamazsam birçok sorun çıkıyor. Mesela aynı sayının 2 3 defa prime mı diye kontrol edilmesi ve print edilmesi.
-            int localI = i;
-            Thread checkPrimeThread = new Thread(() => PrintIfPrime(localI));
-            checkPrimeThread.Start(); //foreach içinde çağırınca performans olarak kötüleşiyor. burda yazınca performans daha iyi.
-            threads.Add(checkPrimeThread);
-        }
+        // for (int i = num1; i <= num2; i++)
+        // {
+        //     //araştırınca thread kullanırken anonim fonksiyon içinde methoda parametre verince valuetype bile olsa reference gönderiyormuş.
+        //     //yani localI tanımlamazsam birçok sorun çıkıyor. Mesela aynı sayının 2 3 defa prime mı diye kontrol edilmesi ve print edilmesi.
+        //     int localI = i;
+        //     Thread checkPrimeThread = new Thread(() => PrintIfPrime(localI));
+        //     checkPrimeThread.Start(); //foreach içinde çağırınca performans olarak kötüleşiyor. burda yazınca performans daha iyi.
+        //     threads.Add(checkPrimeThread);
+        // }
 
-        foreach (var thread in threads)
+        // foreach (var thread in threads)
+        // {
+        //     // thread.Start();
+        //     thread.Join();
+        // }
+
+        Parallel.For(num1, num2 + 1, i =>
         {
-            // thread.Start();
-            thread.Join();
-        }
+            PrintIfPrime(i);
+        });
 
         System.Console.WriteLine();
         watch.Stop();
         Console.WriteLine($"Runtime: {watch.ElapsedMilliseconds} ms");
     }
 
-    static void PrintIfPrime(int num)
+    static void PrintIfPrime(long num)
     {
         bool isPrime = true;
 
