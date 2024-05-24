@@ -9,7 +9,7 @@ internal class Program
         System.Console.WriteLine("Enter the end of the range.");
         bool isNum2 = int.TryParse(Console.ReadLine(), out int num2);
 
-        if (!isNum1 && !isNum2)
+        if (!isNum1 || !isNum2)
         {
             System.Console.WriteLine("Please enter a number.");
             return;
