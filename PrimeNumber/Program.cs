@@ -22,7 +22,7 @@ internal class Program
         num1 = num1 < 3 ? 3 : num1;
         for (int i = num1; i <= num2; i += 2)
         {
-            if (isPrime(i))
+            if (IsPrime(i))
             {
                 Console.Write(i + ", ");
             }
@@ -32,7 +32,7 @@ internal class Program
         System.Console.WriteLine("Runtime: {0} ms", watch.ElapsedMilliseconds);
     }
 
-    static bool isPrime(int num)
+    static bool IsPrime(int num)
     {
         int sqrtNum = (int)Math.Sqrt(num);
         for (int i = 3; i <= sqrtNum; i += 2)
