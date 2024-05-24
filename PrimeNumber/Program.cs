@@ -4,9 +4,9 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        System.Console.WriteLine("Enter the beginning point of range.");
+        System.Console.WriteLine("Enter the beginning of the range.");
         bool isNum1 = int.TryParse(Console.ReadLine(), out int num1);
-        System.Console.WriteLine("Enter the ending point of range.");
+        System.Console.WriteLine("Enter the end of the range.");
         bool isNum2 = int.TryParse(Console.ReadLine(), out int num2);
 
         if (!isNum1 && !isNum2)
@@ -15,11 +15,12 @@ internal class Program
             return;
         }
 
-        System.Console.WriteLine("--------------------");
         var watch = new Stopwatch();
         watch.Start();
 
-        for (int i = num1 < 2 ? 2 : num1; i <= num2; i++)
+        Console.Write("2, ");
+        num1 = num1 < 3 ? 3 : num1;
+        for (int i = num1; i <= num2; i += 2)
         {
             if (isPrime(i))
             {
@@ -27,34 +28,21 @@ internal class Program
             }
         }
 
-        System.Console.WriteLine();
         watch.Stop();
         System.Console.WriteLine("Runtime: {0} ms", watch.ElapsedMilliseconds);
     }
 
     static bool isPrime(int num)
     {
-        if (num == 2)
+        int sqrtNum = (int)Math.Sqrt(num);
+        for (int i = 3; i <= sqrtNum; i += 2)
         {
-            return true;
-        }
-
-        if (num % 2 != 0)
-        {
-            int sqrtNum = (int)Math.Sqrt(num);
-            for (int i = 3; i <= sqrtNum; i += 2)
+            if (num % i == 0)
             {
-                if (num % i == 0)
-                {
-                    return false;
-                }
+                return false;
             }
+        }
 
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return true;
     }
 }
