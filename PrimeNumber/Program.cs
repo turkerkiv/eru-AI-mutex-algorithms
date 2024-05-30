@@ -19,7 +19,11 @@ internal class Program
 
         num1 = num1 < 3 ? 3 : num1;
 
-        List<Thread> threads = new List<Thread>();
+        //countdownEvent kullanarak threadlerin bitmesini bekleyebiliriz.
+
+        //burada kaç tane iş oluşacağını önceden belirtiyoruz.
+        var countdownEvent = new CountdownEvent((int)Math.Ceiling((num2 - num1) / 2d));
+
         var watch = new System.Diagnostics.Stopwatch();
         watch.Start();
 
@@ -30,17 +34,19 @@ internal class Program
             //yani localI tanımlamazsam birçok sorun çıkıyor. Mesela aynı sayının 2 3 defa prime mı diye kontrol edilmesi ve print edilmesi.
             int localI = i;
             //------------------------------------- 2. YÖNTEM -------------------------------------
-            ThreadPool.QueueUserWorkItem((state) => PrintIfPrime(localI));
+            ThreadPool.QueueUserWorkItem((state) =>
+            {
+                PrintIfPrime(localI, countdownEvent);
+            });
         }
 
-        Console.Read(); //bunun yerine bir şey koymak lazım ki program kapanmasın. çünkü threadlerin hepsi çalışmamış olabilir. CountdownEvent.Wait() olabilir belki
-
+        countdownEvent.Wait(); //Tüm işler sinyalleninceye kadar main thread bekliyor.
         System.Console.WriteLine();
         watch.Stop();
         Console.WriteLine($"Runtime: {watch.ElapsedMilliseconds} ms");
     }
 
-    static void PrintIfPrime(long num)
+    static void PrintIfPrime(long num, CountdownEvent cde)
     {
         bool isPrime = true;
 
@@ -57,5 +63,7 @@ internal class Program
         {
             Console.Write(num + " ");
         }
+
+        cde.Signal(); //Her iş bittiğinde sinyalliyor.
     }
 }
