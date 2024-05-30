@@ -1,48 +1,51 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        System.Console.WriteLine("Enter the beginning of the range.");
+        Console.WriteLine("Enter the beginning of the range.");
         bool isNum1 = int.TryParse(Console.ReadLine(), out int num1);
-        System.Console.WriteLine("Enter the end of the range.");
+        Console.WriteLine("Enter the end of the range.");
         bool isNum2 = int.TryParse(Console.ReadLine(), out int num2);
 
-        if (!isNum1 || !isNum2)
+        if (!isNum1 || !isNum2 || num1 < 2)
         {
-            System.Console.WriteLine("Please enter a number.");
+            Console.WriteLine("Please enter a valid range starting from 2.");
             return;
         }
 
-        var watch = new Stopwatch();
-        watch.Start();
+        Stopwatch watch = Stopwatch.StartNew();
+        PrintPrimesInRange(num1, num2);
+        watch.Stop();
 
-        Console.Write("2, ");
-        num1 = num1 < 3 ? 3 : num1;
-        for (int i = num1; i <= num2; i += 2)
+        Console.WriteLine($"Runtime: {watch.ElapsedMilliseconds} ms");
+    }
+
+    static void PrintPrimesInRange(int start, int end)
+    {
+        bool[] primes = new bool[end + 1];
+        int sqrtEnd = (int)Math.Sqrt(end);
+
+        Parallel.For(2, sqrtEnd + 1, i =>
         {
-            if (IsPrime(i))
+            if (!primes[i])
+            {
+                for (int j = i * i; j <= end; j += i)
+                {
+                    primes[j] = true;
+                }
+            }
+        });
+
+        for (int i = Math.Max(2, start); i <= end; i++)
+        {
+            if (!primes[i])
             {
                 Console.Write(i + ", ");
             }
         }
-
-        watch.Stop();
-        System.Console.WriteLine("Runtime: {0} ms", watch.ElapsedMilliseconds);
-    }
-
-    static bool IsPrime(int num)
-    {
-        int sqrtNum = (int)Math.Sqrt(num);
-        for (int i = 3; i <= sqrtNum; i += 2)
-        {
-            if (num % i == 0)
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 }
