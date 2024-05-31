@@ -24,13 +24,14 @@ internal class Program
         var watch = new System.Diagnostics.Stopwatch();
         watch.Start();
 
-        int threadCount = 2;
+        float threadCount = 5;
+        float rangeStep = (num2 - num1) / threadCount;
+        System.Console.WriteLine(rangeStep);
         for (int i = 0; i < threadCount; i++)
         {
-            int rangeStep = (num2 - num1) / threadCount;
-            //*** beginning ve end için float veya double ile çok daha iyi olabilir + 1 eklemeye gerek kalmaz ve daha doğru sonuçlar alınır
-            //mesela 1000-2000 arasında 2 thread çalışacaksa 1000-1500 ve 1500-2000 aralıklarında çalışacak şekilde ayarlanır. en sondaki ende eklenen rangestep + 1 sayı kaçırmamak için
-            Thread checkPrimeThread = new Thread(() => PrintIfPrime(num1 + i * rangeStep, num1 + rangeStep + i * rangeStep + 1));
+            //mesela 1000-2000 arasında 2 thread çalışacaksa 1000-1500 ve 1500-2000 aralıklarında çalışacak şekilde ayarlanır
+            //float kullanmamın sebebi rangeStep'in tam sayı olmaması durumunda da sayı kaçırmaması
+            Thread checkPrimeThread = new Thread(() => PrintIfPrime(num1 + i * rangeStep, num1 + rangeStep + i * rangeStep));
             checkPrimeThread.Start();
             checkPrimeThread.Join();
         }
@@ -40,10 +41,10 @@ internal class Program
         Console.WriteLine($"Runtime: {watch.ElapsedMilliseconds} ms");
     }
 
-    static void PrintIfPrime(int beginning, int end)
+    static void PrintIfPrime(float beginning, float end)
     {
-        beginning = beginning % 2 == 0 ? beginning + 1 : beginning;
-        for (int i = beginning; i <= end; i += 2)
+        beginning = (int)beginning % 2 == 0 ? beginning + 1 : beginning;
+        for (int i = (int)beginning; i <= end; i += 2)
         {
             bool isPrime = true;
             int sqrtNum = (int)Math.Sqrt(i);
