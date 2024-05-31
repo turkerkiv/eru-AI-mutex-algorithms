@@ -17,13 +17,22 @@ internal class Program
             return;
         }
 
-        num1 = num1 < 3 ? 3 : num1;
+        if (num1 > num2)
+        {
+            System.Console.WriteLine("The beginning of the range must be less than the end of the range.");
+            return;
+        }
+
+        if (num1 < 3)
+        {
+            num1 = 3;
+            System.Console.Write("2 ");
+        }
 
         List<Thread> threads = new List<Thread>();
         var watch = new System.Diagnostics.Stopwatch();
         watch.Start();
 
-        System.Console.Write("2 ");
         for (int i = num1; i <= num2; i += 2)
         {
             //araştırınca thread kullanırken anonim fonksiyon içinde methoda parametre verince valuetype bile olsa reference gönderiyormuş.
