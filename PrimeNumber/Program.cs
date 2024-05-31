@@ -17,27 +17,22 @@ internal class Program
             return;
         }
 
+        //bug
         num1 = num1 < 3 ? 3 : num1;
+        System.Console.Write("2 ");
 
-        List<Thread> threads = new List<Thread>();
         var watch = new System.Diagnostics.Stopwatch();
         watch.Start();
 
-        System.Console.Write("2 ");
-        for (int i = num1; i <= num2; i += 2)
+        int threadCount = 2;
+        for (int i = 0; i < threadCount; i++)
         {
-            //araştırınca thread kullanırken anonim fonksiyon içinde methoda parametre verince valuetype bile olsa reference gönderiyormuş.
-            //yani localI tanımlamazsam birçok sorun çıkıyor. Mesela aynı sayının 2 3 defa prime mı diye kontrol edilmesi ve print edilmesi.
-            int localI = i;
-            Thread checkPrimeThread = new Thread(() => PrintIfPrime(localI));
-            checkPrimeThread.Start(); //foreach içinde joinden hemen önce çağırınca performans olarak kötüleşiyor. burda yazınca performans daha iyi.
-            threads.Add(checkPrimeThread);
-        }
-
-        foreach (var thread in threads)
-        {
-            // thread.Start();
-            thread.Join();
+            int rangeStep = (num2 - num1) / threadCount;
+            //*** beginning ve end için float veya double ile çok daha iyi olabilir + 1 eklemeye gerek kalmaz ve daha doğru sonuçlar alınır
+            //mesela 1000-2000 arasında 2 thread çalışacaksa 1000-1500 ve 1500-2000 aralıklarında çalışacak şekilde ayarlanır. en sondaki ende eklenen rangestep + 1 sayı kaçırmamak için
+            Thread checkPrimeThread = new Thread(() => PrintIfPrime(num1 + i * rangeStep, num1 + rangeStep + i * rangeStep + 1));
+            checkPrimeThread.Start();
+            checkPrimeThread.Join();
         }
 
         System.Console.WriteLine();
@@ -45,22 +40,25 @@ internal class Program
         Console.WriteLine($"Runtime: {watch.ElapsedMilliseconds} ms");
     }
 
-    static void PrintIfPrime(long num)
+    static void PrintIfPrime(int beginning, int end)
     {
-        bool isPrime = true;
-
-        int sqrtNum = (int)Math.Sqrt(num);
-        for (int i = 3; i <= sqrtNum; i += 2)
+        beginning = beginning % 2 == 0 ? beginning + 1 : beginning;
+        for (int i = beginning; i <= end; i += 2)
         {
-            if (num % i == 0)
+            bool isPrime = true;
+            int sqrtNum = (int)Math.Sqrt(i);
+            for (int j = 3; j <= sqrtNum; j += 2)
             {
-                isPrime = false;
+                if (i % j == 0)
+                {
+                    isPrime = false;
+                }
             }
-        }
 
-        if (isPrime)
-        {
-            Console.Write(num + " ");
+            if (isPrime)
+            {
+                Console.Write(i + " ");
+            }
         }
     }
 }
