@@ -17,21 +17,33 @@ internal class Program
             return;
         }
 
-        //bug
-        num1 = num1 < 3 ? 3 : num1;
-        System.Console.Write("2 ");
+        if (num1 > num2)
+        {
+            System.Console.WriteLine("The beginning of the range must be less than the end of the range.");
+            return;
+        }
+
+        if (num1 < 3)
+        {
+            num1 = 3;
+            System.Console.Write("2 ");
+        }
 
         var watch = new System.Diagnostics.Stopwatch();
         watch.Start();
 
+        //elle girmek yerine sayının büyüklüğüne göre ayarlanabilir.
         float threadCount = 5;
+
         float rangeStep = (num2 - num1) / threadCount;
-        System.Console.WriteLine(rangeStep);
+
+        //forda beginninge + 1 ekliyorum aynı sayıları kontrol etmesinler diye ama ilk sayıyı kaçırıyor o yüzden burda sadece ilk sayıyı kontrol ediyorum.
+        PrintIfPrime(num1, num1);
         for (int i = 0; i < threadCount; i++)
         {
             //mesela 1000-2000 arasında 2 thread çalışacaksa 1000-1500 ve 1500-2000 aralıklarında çalışacak şekilde ayarlanır
             //float kullanmamın sebebi rangeStep'in tam sayı olmaması durumunda da sayı kaçırmaması
-            Thread checkPrimeThread = new Thread(() => PrintIfPrime(num1 + i * rangeStep, num1 + rangeStep + i * rangeStep));
+            Thread checkPrimeThread = new Thread(() => PrintIfPrime(num1 + i * rangeStep + 1, num1 + rangeStep + i * rangeStep));
             checkPrimeThread.Start();
             checkPrimeThread.Join();
         }
