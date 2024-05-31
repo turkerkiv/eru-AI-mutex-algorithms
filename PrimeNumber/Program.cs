@@ -18,8 +18,19 @@ internal class Program
         var watch = new Stopwatch();
         watch.Start();
 
-        Console.Write("2, ");
-        num1 = num1 < 3 ? 3 : num1;
+
+        if (num1 > num2)
+        {
+            System.Console.WriteLine("The beginning of the range must be less than the end of the range.");
+            return;
+        }
+
+        if (num1 < 3)
+        {
+            num1 = 3;
+            System.Console.Write("2 ");
+        }
+
         for (int i = num1; i <= num2; i += 2)
         {
             if (IsPrime(i))
