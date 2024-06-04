@@ -33,7 +33,7 @@ internal class Program
         watch.Start();
 
         //elle girmek yerine sayının büyüklüğüne göre ayarlanabilir.
-        float threadCount = 1;
+        float threadCount = 30;
 
         CountdownEvent cd = new CountdownEvent((int)threadCount);
 
