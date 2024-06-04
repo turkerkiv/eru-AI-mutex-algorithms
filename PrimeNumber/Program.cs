@@ -43,12 +43,13 @@ internal class Program
         {
             //mesela 1000-2000 arasında 2 thread çalışacaksa 1000-1500 ve 1500-2000 aralıklarında çalışacak şekilde ayarlanır
             //float kullanmamın sebebi rangeStep'in tam sayı olmaması durumunda da sayı kaçırmaması
-            Thread checkPrimeThread = new Thread(() => PrintIfPrime(num1 + i * rangeStep + 1, num1 + rangeStep + i * rangeStep));
+            //local variable yapmazsak valuesunu değil referansını alıyormuş
+            float beginning = num1 + i * rangeStep + 1;
+            float end = num1 + rangeStep + i * rangeStep;
+            Thread checkPrimeThread = new Thread(() => PrintIfPrime(beginning, end));
             checkPrimeThread.Start();
-            checkPrimeThread.Join();
         }
 
-        System.Console.WriteLine();
         watch.Stop();
         Console.WriteLine($"Runtime: {watch.ElapsedMilliseconds} ms");
     }
@@ -70,7 +71,6 @@ internal class Program
 
             if (isPrime)
             {
-                Console.Write(i + " ");
             }
         }
     }
