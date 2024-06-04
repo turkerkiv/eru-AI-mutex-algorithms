@@ -37,7 +37,6 @@ internal class Program
         {
             if (IsPrime(i))
             {
-                Console.Write(i + ", ");
             }
         }
 
