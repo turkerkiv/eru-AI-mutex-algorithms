@@ -31,6 +31,8 @@ internal class Program
             System.Console.Write("2 ");
         }
 
+        num1 = num1 % 2 == 0 ? num1 + 1 : num1;
+
         for (int i = num1; i <= num2; i += 2)
         {
             if (IsPrime(i))
